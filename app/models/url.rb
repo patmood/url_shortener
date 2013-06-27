@@ -2,6 +2,7 @@ class Url < ActiveRecord::Base
   before_create :generate_short_url, :set_click_count
 
   validates :long_url, :presence => true, :uniqueness => true
+  validates_format_of :long_url, :with => /http[s]?:\/\// 
 
   def set_click_count
     self.click_count  ||= 0
